@@ -1,0 +1,1 @@
+# Geometric variable strain model

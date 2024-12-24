@@ -3,4 +3,4 @@ Sorosim is an open-source soft robotics simulator that implements that geometric
 The matlab implementation of the toolbox can be downloaded from [https://www.mathworks.com/matlabcentral/fileexchange/83038-sorosim](https://www.mathworks.com/matlabcentral/fileexchange/83038-sorosim)
 
 
-![[coverimage.png]]
+![title](Images\coverimage.png)
