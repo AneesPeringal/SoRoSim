@@ -1,6 +1,6 @@
 site_name: My Docs
 nav:
-    - Home: Welcome.md
+    - Home: index.md
     - Installation: Installation.md
     - User guide:
         - SorosimLink: SorosimLink.md
@@ -11,6 +11,8 @@ nav:
     - Function definitions:
         - Basic functions: Basic functions.md
         - Analytical derivatives: Analytical derivatives functions.md
+    - Theory:
+        - Screw theory recap: Screw theory recap.md
 
 theme: readthedocs
 # markdown_extensions:
