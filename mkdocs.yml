@@ -15,8 +15,8 @@ nav:
         - Screw theory recap: Screw theory recap.md
 
 theme: readthedocs
-# markdown_extensions:
-#   - pymdownx.arithmatex:
-#       generic: true
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
 
 
