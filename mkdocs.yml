@@ -1,0 +1,20 @@
+site_name: My Docs
+nav:
+    - Home: Welcome.md
+    - Installation: Installation.md
+    - User guide:
+        - SorosimLink: SorosimLink.md
+        - SorosimTwists: SorosimTwists.md
+        - SorosimLinkage: SorosimLinkage.md 
+    # - Example problems:
+    
+    - Function definitions:
+        - Basic functions: Basic functions.md
+        - Analytical derivatives: Analytical derivatives functions.md
+
+theme: readthedocs
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+
