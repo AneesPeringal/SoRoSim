@@ -1,3 +1,4 @@
+# SoroSimLinkage class
 The SorosimLinkage class allows the user to combine the previously defined [[SorosimLink]] objects into various linkages. The linkage topology may be open, closed, branched etc. The external forces and actuation is also defined in this class. The toolbox provides various inbuilt functions that allows the user to define various types of forces and moments, even custom external forces can be modelled. 
 
 ## Linkage definition
@@ -7,107 +8,108 @@ S1 = SorosimLinkage(L1,L2)
 ```
 This leads the user to a GUI that allows the definition of relative position and orientation of the two links with respect to other links in the linkage. #todo ==add picture==
 
-| Type | Name             | datatype | Description |
-| ---- | ---------------- | -------- | ----------- |
-|      | N                |          |             |
-|      | ndof             |          |             |
-|      | nsig             |          |             |
-|      | VLinks           |          |             |
-|      | LinkIndex        |          |             |
-|      | CVTwists         |          |             |
-|      | iLpre            |          |             |
-|      | g_ini            |          |             |
-|      | Z_order          |          |             |
-|      |                  |          |             |
-|      | nCLj             |          |             |
-|      | iACL             |          |             |
-|      | iCLB             |          |             |
-|      | VTwistsCLj       |          |             |
-|      | gACLj            |          |             |
-|      | gBCLj            |          |             |
-|      | CLprecompute     |          |             |
-|      | T_BS             |          |             |
-|      |                  |          |             |
-|      | Gravity          |          |             |
-|      | G                |          |             |
-|      |                  |          |             |
-|      | PointForce       |          |             |
-|      | FollowerForce    |          |             |
-|      | np               |          |             |
-|      | Fp_loc           |          |             |
-|      | Fp_vec           |          |             |
-|      |                  |          |             |
-|      | CEFP             |          |             |
-|      | M_added          |          |             |
-|      |                  |          |             |
-|      | Actuated         |          |             |
-|      | nact             |          |             |
-|      |                  |          |             |
-|      | Bqj1             |          |             |
-|      | n_jact           |          |             |
-|      | i_jact           |          |             |
-|      | i_jactq          |          |             |
-|      | Wrenchcontrolled |          |             |
-|      |                  |          |             |
-|      | n_sact           |          |             |
-|      | dc               |          |             |
-|      | dcp              |          |             |
-|      | Sdiv             |          |             |
-|      | Ediv             |          |             |
-|      | Inside           |          |             |
-|      | CableFunction    |          |             |
-|      |                  |          |             |
-|      | CAP              |          |             |
-|      | CAS              |          |             |
-|      |                  |          |             |
-|      | K                |          |             |
-|      | Damped           |          |             |
-|      | D                |          |             |
-|      |                  |          |             |
-|      | CP1              |          |             |
-|      | CP2              |          |             |
-|      | CP3              |          |             |
-|      |                  |          |             |
-|      |                  |          |             |
+| Type | Name             | datatype | Description                                                                                             |
+| ---- | ---------------- | -------- | ------------------------------------------------------------------------------------------------------- |
+|      | N                |          | Total number of links                                                                                   |
+|      | ndof             |          | Total number of dofs                                                                                    |
+|      | nsig             |          | Total number of points at which computation is performed  \(N +N_{rigid} +\sum(N_{soft_{div}}*n_gauss\) |
+|      | VLinks           |          | Vector of unique links                                                                                                        |
+|      | LinkIndex        |          | Array of indices corresponding to each link.                                                                                                        |
+|      | CVTwists         |          | Cell vector of twists for each link.                                                                                                        |
+|      | iLpre            |          | Array corresponding to the link index of the link that the ith link is connected to.                                                                                                       |
+|      | g_ini            |          | Homogenous transformation matrix of links with respect to the tip of the previous link.                                                                                                        |
+|      | Z_order          |          | Order of zannah collocation.                                                                                                        |
+|      |                  |          |                                                                                                         |
+|      | nCLj             |          | Number of closed loop joints.                                                                                                        |
+|      | iACL             |          | Array corresponding to the index of link A                                                                                                        |
+|      | iCLB             |          | Array corresponding to the index of link B.                                                                                                        |
+|      | VTwistsCLj       |          | Array of twist vectors corresponding to each closed loop joint.                                                                                                       |
+|      | gACLj            |          |                                                                                                         |
+|      | gBCLj            |          |                                                                                                         |
+|      | CLprecompute     |          |                                                                                                         |
+|      | T_BS             |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | Gravity          |          | Boolean value of 1 if gravity is present, 0 if it is not present                                                                                                         |
+|      | G                |          | (6x1) vector of the value of acceleration due to gravity                                                                                                        |
+|      |                  |          |                                                                                                         |
+|      | PointForce       |          | Boolean 1 if point force is present, 0 if it is not present                                                                                                       |
+|      | FollowerForce    |          | Boolean 1 if the force is defined in the local frame and 0 if it is defined in the global frame                                                                                                        |
+|      | np               |          | Number of point forces.                                                                                                        |
+|      | Fp_loc           |          |                                                                                                         |
+|      | Fp_vec           |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | CEFP             |          |                                                                                                         |
+|      | M_added          |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | Actuated         |          |                                                                                                         |
+|      | nact             |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | Bqj1             |          |                                                                                                         |
+|      | n_jact           |          |                                                                                                         |
+|      | i_jact           |          |                                                                                                         |
+|      | i_jactq          |          |                                                                                                         |
+|      | Wrenchcontrolled |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | n_sact           |          |                                                                                                         |
+|      | dc               |          |                                                                                                         |
+|      | dcp              |          |                                                                                                         |
+|      | Sdiv             |          |                                                                                                         |
+|      | Ediv             |          |                                                                                                         |
+|      | Inside           |          |                                                                                                         |
+|      | CableFunction    |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | CAP              |          |                                                                                                         |
+|      | CAS              |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | K                |          |                                                                                                         |
+|      | Damped           |          |                                                                                                         |
+|      | D                |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      | CP1              |          |                                                                                                         |
+|      | CP2              |          |                                                                                                         |
+|      | CP3              |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
+|      |                  |          |                                                                                                         |
 
 ## Class methods
 
->Bq = **ActuationMatrix**(Tr,q)
->**Input**: Tr ([[SorosimLinkage]]), q (generalised coordintes) 
->**Output**: Bq ()
->
+### Bq = **ActuationMatrix**(Tr,q)
+**Input**: Tr ([[SorosimLinkage]]), q (generalised coordintes) <br>
+**Output**: Bq ()<br>
 
->dqdt=**derivatives**(Tr,t,qqd,uqt)
->**Input**: Tr ([[SorosimLinkage]]), t(simulation time), qqd ( $\mathbb{R}^{2\times ndof}$ vector of generalised coordinates and its derivatives), ==uqt== 
 
->[t,qqd] = **dynamics**(Tr,qqd0,odetype,dt)
+### dqdt=**derivatives**(Tr,t,qqd,uqt)
+**Input**: Tr ([[SorosimLinkage]]), t(simulation time), qqd ( $\mathbb{R}^{2\times ndof}$ vector of generalised coordinates and its derivatives), ==uqt== <br>
+**Output**: dqdt<br>
 
->E=**Equilibrium**(Tr,qu,uq,magnifier,lsqoptions)
+### [t,qqd] = **dynamics**(Tr,qqd0,odetype,dt)
 
->D = **findD**(Tr,varargin)
+### E=**Equilibrium**(Tr,qu,uq,magnifier,lsqoptions)
 
->K = **findK**(Tr,varargin)
+### D = **findD**(Tr,varargin)
 
->g = **FwdKinematics**(Tr,q,i_here,j_here)
+### K = **findK**(Tr,varargin)
 
->C = **GeneralizedCoriolisMatrix**(Tr,q,qd)
+### g = **FwdKinematics**(Tr,q,i_here,j_here)
 
->F = **GeneralizedExternalForce**(Tr,q,t,qd)
+### C = **GeneralizedCoriolisMatrix**(Tr,q,qd)
 
->M = **GeneralizedMassMatrix**(Tr,q)
+### F = **GeneralizedExternalForce**(Tr,q,t,qd)
 
->J = **Jacobian**(Tr,q,i_here,j_here)
+### M = **GeneralizedMassMatrix**(Tr,q)
 
->Jd = **Jacobiandot**(Tr,q,qd,i_here,j_here)
+### J = **Jacobian**(Tr,q,i_here,j_here)
 
->**plotq**(Tr,q)
+### Jd = **Jacobiandot**(Tr,q,qd,i_here,j_here)
 
->**plotq0**(Tr,Lh,Dh,CLh)
+### **plotq**(Tr,q)
 
->**plotqqd**(Tr,t,qqd)
+### **plotq0**(Tr,Lh,Dh,CLh)
 
->xi = **ScrewStrain**(Tr,q,i_here,j_here)
+### **plotqqd**(Tr,t,qqd)
 
->eta = **ScrewVelocity**(Tr,q,qd,i_here,j_here)
+### xi = **ScrewStrain**(Tr,q,i_here,j_here)
 
->[q,u]=**statics**(Tr,qu0,magnifier)
+### eta = **ScrewVelocity**(Tr,q,qd,i_here,j_here)
+
+### [q,u]=**statics**(Tr,qu0,magnifier)

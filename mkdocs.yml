@@ -23,6 +23,7 @@ plugins:
     - autorefs
 markdown_extensions: 
   - pymdownx.arithmatex
+  - admonition
     #   generic: true
 
 extra_javascript:
